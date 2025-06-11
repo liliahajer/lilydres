@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - LilyDress</title>
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      padding: 30px;
+      background-color: #fff0f5;
+    }
+
+    h1 {
+      color: #d63384;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: white;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #ffb6c1;
+    }
+
+    tr:hover {
+      background-color: #f8bbd0;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📦 Commandes reçues</h1>
+
+  <table id="table-commandes">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Produit</th>
+        <th>Quantité</th>
+        <th>Prix Total</th>
+        <th>Téléphone</th>
+        <th>Ville</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    fetch('http://localhost:3000/commandes')
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("Erreur réseau - Statut : " + res.status);
+        }
+        return res.json();
+      })
+      .then(commandes => {
+        const tbody = document.querySelector('#table-commandes tbody');
+
+        if (commandes.length === 0) {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td colspan="9" style="text-align:center">Aucune commande trouvée</td>`;
+          tbody.appendChild(tr);
+          return;
+        }
+
+        commandes.forEach(cmd => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td>${cmd.id}</td>
+        <td>${cmd.nom || '-'}</td>
+        <td>${cmd.email || '-'}</td>
+        <td>${cmd.produit_nom || '-'}</td>
+        <td>${cmd.produit_quantite || '-'}</td>
+        <td>${(parseFloat(cmd.prix_total) || 0).toFixed(2)}€</td>
+        <td>${cmd.telephone || '-'}</td>
+        <td>${cmd.ville || '-'}</td>
+        <td>${cmd.date_commande ? new Date(cmd.date_commande).toLocaleString() : '-'}</td>
+    `;
+    tbody.appendChild(tr);
+});
+      })
+      .catch(err => {
+        console.error("❌ Erreur lors du chargement des commandes :", err);
+        const tbody = document.querySelector('#table-commandes tbody');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td colspan="9" class="error">⚠️ Erreur : Impossible de charger les commandes</td>`;
+        tbody.appendChild(tr);
+      });
+  </script>
+
+</body>
+</html>
