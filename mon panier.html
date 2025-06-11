@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Panier - LilyDress</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="projet.css">
+   
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      padding: 20px;
+    }
+    h1 {
+  font-size: 32px;
+  color: #d63384;
+  margin-bottom: 25px;
+  border-bottom: 2px dashed #f8bbd0;
+  padding-bottom: 10px;
+    }
+
+    .panier-container {
+      max-width: 700px;
+      margin: auto;
+    }
+    ul#panier {
+      list-style: none;
+      padding: 0;
+    }
+     ul#panier li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 15px;
+  background: #fefefe;
+  border-left: 4px solid #ffb6c1;
+  border-radius: 10px;
+  transition: background 0.3s;
+    }
+     ul#panier li:hover {
+  background: #fff0f5;
+    }
+    .total {
+      text-align: right;
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    .btn-valider {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 25px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .btn-valider:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<!-- Barre de navigation -->
+  <nav class="navbar">
+    <div class="logo">LilyDress</div>
+    <div class="link">
+  <ul>
+    <li class="has-sous-nav">
+      <a href="#">Menu ▼</a>
+      <ul class="sous-nav">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="robes.html">Robes</a></li>
+        <li><a href="pyjamas.html">Pyjamas</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+ 
+  </nav>
+  <div class="panier-container">
+    <h1>Votre Panier</h1>
+    <ul id="panier"></ul>
+    <p class="total">Total : <span id="total">0.00€</span></p>
+    <h2>Informations du client</h2>
+<div class="formulaire-client">
+  <input type="text" id="nom" placeholder="Nom complet" required><br><br>
+  <input type="email" id="email" placeholder="Email" required><br><br>
+  <input type="text" id="adresse" placeholder="Adresse" required><br><br>
+  <input type="text" id="ville" placeholder="Ville" required><br><br>
+  <input type="text" id="codePostal" placeholder="Code postal" required><br><br>
+  <input type="tel" id="telephone" placeholder="Téléphone" required><br><br>
+</div>
+    <button class="btn-valider" onclick="validerCommande()">Valider la commande</button>
+  </div>
+
+  <script>
+// Récupération des articles depuis localStorage
+const panier = JSON.parse(localStorage.getItem('panier')) || [];
+const ul = document.getElementById("panier");
+const totalEl = document.getElementById("total");
+
+// Regrouper les articles par nom et sommer les quantités
+const panierGroupé = {};
+
+
+
+panier.forEach(article => {
+  const nom = article.nom;
+  const couleur = article.couleur || "Par défaut"; // Valeur par défaut si absente
+  const prixNum = parseFloat(article.prix.replace("€", "").replace(",", "."));
+  const quantite = article.quantite || 1;
+
+  // Clé unique par nom + couleur
+  const cle = `${nom} - ${couleur}`;
+
+  if (!panierGroupé[cle]) {
+    panierGroupé[cle] = { prixUnitaire: prixNum, quantite: quantite };
+  } else {
+    panierGroupé[cle].quantite += quantite;
+  }
+});
+
+// Afficher les articles regroupés
+let total = 0;
+
+for (const cle in panierGroupé) {
+  const article = panierGroupé[cle];
+  const sousTotal = article.prixUnitaire * article.quantite;
+
+  const li = document.createElement("li");
+  li.innerHTML = `<span>${cle} × ${article.quantite}</span><span>${sousTotal.toFixed(2)}€</span>`;
+
+  ul.appendChild(li);
+  total += sousTotal;
+}
+
+
+totalEl.textContent = total.toFixed(2) + "€";
+
+function validerCommande() {
+    const panier = JSON.parse(localStorage.getItem('panier')) || [];
+
+    if (panier.length === 0) {
+        alert("Votre panier est vide !");
+        return;
+    }
+
+    // Récupère les informations du formulaire
+    const nom = document.getElementById("nom").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const adresse = document.getElementById("adresse").value.trim();
+    const ville = document.getElementById("ville").value.trim();
+    const codePostal = document.getElementById("codePostal").value.trim();
+    const telephone = document.getElementById("telephone").value.trim();
+
+    // Vérifie que tous les champs sont remplis
+    if (!nom || !email || !adresse || !ville || !codePostal || !telephone) {
+        alert("⚠️ Veuillez remplir tous les champs.");
+        return;
+    }
+
+    // Formatage des produits
+    const produits = panier.map(article => {
+    const prixNum = parseFloat(article.prix.replace("€", "").replace(",", ".")) || 0;
+    const quantiteNum = parseInt(article.quantite) || 1;
+
+    return {
+        id: article.id || 1,
+        nom: article.nom || "Produit inconnu",
+        quantite: quantiteNum,
+        prix: prixNum
+    };
+});
+
+    // Envoi au serveur Node.js
+   
+fetch('http://localhost:3000/commande', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        nom: document.getElementById("nom").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        adresse: document.getElementById("adresse").value.trim(),
+        ville: document.getElementById("ville").value.trim(),
+        codePostal: document.getElementById("codePostal").value.trim(),
+        telephone: document.getElementById("telephone").value.trim(),
+        produits
+    })
+   })
+  .then(res => res.json())
+.then(data => {
+      alert("✅ Commande validée !");
+    localStorage.removeItem('panier');
+    location.reload();
+} )
+.catch(err => {
+    console.error("❌ Erreur :", err);
+    alert("⚠️ Une erreur est survenue.");
+});
+}
+</script>
+
+
+</body>
+</html>

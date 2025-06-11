@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LilyDress</title>
+  <link rel="icon" href="https://img.icons8.com/?size=100&id=111131&format=png&color=000000" type="image/png"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="projet.css" />
+  <style>
+    /* Styles ajoutés pour la barre de recherche */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: #fff7f9;
+      box-shadow: 0 2px 5px rgba(146, 59, 59, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: #923b3b;
+      font-weight: 700;
+    }
+    
+    
+    .link ul li a {
+      color: #923b3b;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 5px 10px;
+      transition: color 0.3s;
+    }
+    .link ul li a:hover {
+      color: #f06292;
+    }
+    .has-sous-nav:hover .sous-nav {
+      display: block;
+    }
+    .sous-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #fff7f9;
+      box-shadow: 0 4px 10px rgba(146, 59, 59, 0.2);
+      border-radius: 8px;
+      padding: 10px 0;
+      min-width: 180px;
+      z-index: 200;
+    }
+    .sous-nav li {
+      padding: 8px 20px;
+    }
+    .sous-nav li a {
+      color: #923b3b;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sous-nav li a:hover {
+      color: #f06292;
+    }
+
+    /* Barre de recherche */
+    .search-container {
+      position: relative;
+    }
+    .search-container input[type="text"] {
+      padding: 7px 12px;
+      border: 1.5px solid #923b3b;
+      border-radius: 20px;
+      outline: none;
+      font-size: 15px;
+      width: 200px;
+      transition: width 0.3s ease;
+    }
+    .search-container input[type="text"]:focus {
+      width: 280px;
+      box-shadow: 0 0 6px #f06292;
+    }
+    .search-container button {
+      position: absolute;
+      right: 4px;
+      top: 20%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #923b3b;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 0 6px;
+    }
+
+    /* Sous-section robes */
+    .robes-section {
+      background-color: #fff7f9;
+      padding: 50px 30px;
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
+    }
+    .robes-section h2 {
+      text-align: center;
+      color: #923b3b;
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+    .robes-categories {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .robe-card {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      max-width: 350px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+    }
+    .robe-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    .robe-card img {
+      width: 100%;
+      display: block;
+      height: 500px;
+      object-fit: cover;
+    }
+    .robe-card h3 {
+      color: #923b3b;
+      margin: 15px 0 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+    }
+    .robe-card p {
+      color: #7a4949;
+      font-size: 16px;
+      padding: 0 15px 20px;
+    }
+    .Partie2 img {
+        width: 80%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="logo">LilyDress</div>
+    <div class="link">
+      <ul>
+        <li class="has-sous-nav">
+          <a href="#">Menu ▼</a>
+          <ul class="sous-nav">
+            <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+            <li><a href="robes.html"><i class="fas fa-female"></i> Robes</a></li>
+            <li><a href="pyjama.html"><i class="fas fa-bed"></i> Pyjamas</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="mon panier.html"><i class="fas fa-shopping-cart"></i> Panier</a></li>
+          
+          </ul>
+        </li>
+        <li>
+          <div class="search-container">
+            <form action="search.html" method="get" role="search">
+              <input type="text" name="q" placeholder="Rechercher..." aria-label="Recherche"/>
+              <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="milieu">
+    <div class="Partie1">
+      <h1>Remplissez votre garde-robe asiatique</h1>
+      <p>
+        Explorez notre collection unique de vêtements inspirés de la mode asiatique.
+        Que vous recherchiez des robes élégantes ou des pyjamas confortables,
+        LilyDress vous propose des articles stylés pour chaque occasion.
+      </p>
+    </div>
+    <div class="Partie2">
+      <img src="https://i.pinimg.com/736x/8c/45/62/8c4562cf26c8a54f236619d988e3ed33.jpg" alt="photo" />
+    </div>
+  </div>
+
+  <section style="position: relative; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; background: url('https://i.pinimg.com/564x/8a/c9/59/8ac9593a6237d681b7a82c6d457f7e18.jpg') center/cover no-repeat;">
+    <div style="background-color: rgba(0, 0, 0, 0.6); padding: 40px; border-radius: 20px;">
+      <h1 style="font-size: 60px; color: #fff; font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 20px;">
+        L’élégance asiatique, réinventée
+      </h1>
+      <p style="font-size: 20px; color: #fce4ec; text-align: center; max-width: 800px; margin: auto;">
+        Découvrez notre univers de robes et pyjamas inspirés des tendances orientales, pour une touche de douceur et de charme au quotidien. 🌸
+      </p>
+    </div>
+  </section>
+
+  
+  </section>
+
+  <!-- Sous-section Robes -->
+  <section class="robes-section">
+    <h2>Robes Et Pyjamas</h2>
+    <div class="robes-categories">
+      <div class="robe-card">
+        <img src="https://i.pinimg.com/736x/30/e4/66/30e466c83eaea042bec14e00037830e8.jpg" alt="Robe courte" />
+        <h3>Robe</h3>
+        <p>Des robes courtes élégantes et légères, parfaites pour un style décontracté ou chic.</p>
+      </div>
+      <div class="robe-card">
+        <img src="https://i.pinimg.com/736x/c6/93/f2/c693f249583fc1215d483ad5682bba82.jpg" alt="Robe longue" />
+        <h3>Pyjamas</h3>
+        <p>Découvrez nos robes longues sophistiquées, idéales pour les occasions spéciales.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section À propos -->
+  <section class="apropos" style="padding: 40px; background-color: #fef9f9;">
+  <h2 style="text-align: center; color: rgba(146, 59, 59, 0.788);">À propos de LilyDress</h2>
+  
+  <p style="max-width: 800px; margin: 20px auto; text-align: center; font-size: 18px; line-height: 1.6;">
+    LilyDress est une boutique en ligne spécialisée dans la vente de robes et de pyjamas inspirés par la mode asiatique.
+    Notre mission est de fournir à nos clients des vêtements de qualité qui allient confort, élégance et originalité.
+    Que vous souhaitiez vous détendre avec style ou faire sensation lors d’un événement, notre collection a quelque chose pour vous.
+  </p>
+
+  <div style="text-align: center; margin-top: 30px;">
+    <!-- Instagram -->
+    <a href="https://instagram.com/ton_nom" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #333; text-decoration: none; font-size: 18px;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#E1306C" viewBox="0 0 24 24">
+        <path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.5.5.6.2 1 .5 1.5 1s.8.9 1 1.5c.2.5.4 1.3.5 2.5.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.5-.2.6-.5 1-1 1.5s-.9.8-1.5 1c-.5.2-1.3.4-2.5.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.5-.5-.6-.2-1-.5-1.5-1s-.8-.9-1-1.5c-.2-.5-.4-1.3-.5-2.5C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-2 .5-2.5.2-.6.5-1 1-1.5s.9-.8 1.5-1c.5-.2 1.3-.4 2.5-.5C8.4 2.2 8.8 2.2 12 2.2M12 0C8.7 0 8.3 0 7 .1c-1.3.1-2.2.3-3 .6-.9.3-1.6.7-2.3 1.4S.9 3.8.6 4.7c-.3.8-.5 1.7-.6 3C0 8.3 0 8.7 0 12s0 3.7.1 5c.1 1.3.3 2.2.6 3 .3.9.7 1.6 1.4 2.3s1.4 1.1 2.3 1.4c.8.3 1.7.5 3 .6 1.3.1 1.7.1 5 .1s3.7 0 5-.1c1.3-.1 2.2-.3 3-.6.9-.3 1.6-.7 2.3-1.4s1.1-1.4 1.4-2.3c.3-.8.5-1.7.6-3 .1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.3-2.2-.6-3-.3-.9-.7-1.6-1.4-2.3S20.2.9 19.3.6c-.8-.3-1.7-.5-3-.6C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.4a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/>
+      </svg>
+      Lily-Dress
+    </a>
+
+    <div style="margin-top: 10px; font-size: 18px;">
+      📞 <a href="tel:+213612345678" style="color: #333; text-decoration: none;">+213 6 12 34 56 78</a>
+    </div>
+  </div>
+</section>
+
+  <!-- Pied de page -->
+  <footer style="background-color: #d9adad; text-align: center; padding: 20px 0; font-size: 14px; color: #fff;">
+    <p>© 2025 LilyDress - Tous droits réservés</p>
+  </footer>
+
+</body>
+</html>
+
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LilyDress</title>
+    <link rel="icon" href="https://img.icons8.com/?size=100&id=111131&format=png&color=000000" type="image/png"/>
+    <link rel="stylesheet" href="projet.css">
+    
+
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">LilyDress</div>
+       
+
+        
+
+        <div class="link">
+  <ul>
+    <li class="has-sous-nav">
+      <a href="#">Menu ▼</a>
+      <ul class="sous-nav">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="Articles.html">Articles</a></li>
+        <li><a href="robes.html">Robes</a></li>
+        <li><a href="pyjama.html">Pyjamas</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+    </nav>
+
+    <div class="milieu">
+        <div class="Partie1">
+            <h1>Remplisser votre garde-robe asiatique</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem aliquid sunt impedit exercitationem illum minima totam voluptates,<br> eum debitis error dolore odit assumenda molestias aspernatur ipsam recusandae dolores neque harum!</p>
+        </div>
+        <div class="Partie2">
+            <img src= "https://i.pinimg.com/736x/d4/4b/8a/d44b8a9fbe9bc55a1554a2aebc589e91.jpg" alt="photo">
+        </div>
+    </div>
+
+
+ </body>
+    
+  
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LilyDress</title>
+  <link rel="icon" href="https://img.icons8.com/?size=100&id=111131&format=png&color=000000" type="image/png"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="projet.css" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="logo">LilyDress</div>
+    <div class="link">
+      <ul>
+        <li class="has-sous-nav">
+          <a href="#">Menu ▼</a>
+          <ul class="sous-nav">
+            <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+            <li><a href="robes.html"><i class="fas fa-female"></i> Robes</a></li>
+            <li><a href="pyjama.html"><i class="fas fa-bed"></i> Pyjamas</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+           <li><a href="mon panier.html"><i class="fas fa-shopping-cart"></i> panier</a></li>
+          </ul>
+
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="milieu">
+    <div class="Partie1">
+      <h1>Remplissez votre garde-robe asiatique</h1>
+      <p>
+        Explorez notre collection unique de vêtements inspirés de la mode asiatique.
+        Que vous recherchiez des robes élégantes ou des pyjamas confortables,
+        LilyDress vous propose des articles stylés pour chaque occasion.
+      </p>
+    </div>
+    <div class="Partie2">
+      <img src="https://i.pinimg.com/736x/d4/4b/8a/d44b8a9fbe9bc55a1554a2aebc589e91.jpg" alt="photo">
+    </div>
+  </div>
+
+ 
+
+

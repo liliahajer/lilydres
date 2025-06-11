@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robes - LilyDress</title>
+  <link rel="stylesheet" href="projet.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap">
+<style>
+  .notif {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 15px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1000;
+  }
+
+  .notif.show {
+    opacity: 1;
+  }
+</style>
+
+</head>
+
+<body>
+
+  <!-- Barre de navigation -->
+  <nav class="navbar">
+    <div class="logo">LilyDress</div>
+    <div class="link">
+  <ul>
+    <li class="has-sous-nav">
+      <a href="#">Menu ▼</a>
+      <ul class="sous-nav">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="robes.html">Robes</a></li>
+        <li><a href="pyjama.html">Pyjamas</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="mon panier.html">Mon panier</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+  </nav>
+
+  <!-- Section des articles -->
+  <section class="articles-section">
+    <h1>Nos Articles</h1>
+    <div class="articles-container">
+      
+      <div class="article-card">
+        <img src="https://i.pinimg.com/736x/51/91/e1/5191e189ec7d779d798c2cbed26ba81d.jpg" alt="Robe Kimono">
+        <h2>Robe Kimono</h2>
+        <p>Élégante et fluide, inspirée de la tradition japonaise. Disponible en plusieurs tailles.</p>
+        <span class="price">39.99€</span>
+        <label>
+         <input type="number" min="1" value="1" class="quantite">
+        </label>
+
+  <!-- Bouton -->
+  <button onclick="ajouterArticle(this)">Ajouter au panier</button>
+      </div>
+
+      <div class="article-card">
+        <img src="https://i.pinimg.com/736x/ca/35/5f/ca355f1c774c30868421828023ab43db.jpg" alt="Jupe traditionnelle">
+        <h2>Pyjama Hanbok</h2>
+        <p>Un style coréen revisité pour la vie moderne. Tissu léger et coloré.</p>
+        <span class="price">29.99€</span>
+      <label>
+         <input type="number" min="1" value="1" class="quantite">
+        </label>
+
+  <!-- Bouton -->
+  <button onclick="ajouterArticle(this)">Ajouter au panier</button>
+      </div>
+
+    <div class="article-card">
+  <!-- Image principale -->
+  <img class="main-image" src="https://i.pinimg.com/736x/d8/46/d9/d846d9e53b931a51c82c9194504807be.jpg" alt="Blouse chinoise">
+
+  <h2>Blouse Chinoise</h2>
+  <p>Col Mao raffiné et broderie florale pour un look raffiné et unique.</p>
+  <span class="price">24.99€</span>
+
+  <!-- Choix de couleur -->
+  <div class="color-preview">
+    <span>Autre couleur :</span>
+    <div class="color-circle" style="background-color: white;" title="Blanc"
+         onclick="changerImage(this, 'https://i.pinimg.com/736x/d8/46/d9/d846d9e53b931a51c82c9194504807be.jpg')"></div>
+    <div class="color-circle" style="background-color: #97a2e5;" title="Bleu"
+         onclick="changerImage(this, 'https://i.pinimg.com/736x/38/18/c9/3818c94274e422ad811ad9fe10b492e1.jpg')"></div>
+  </div>
+
+  <label>
+    <input type="number" min="1" value="1" class="quantite">
+  </label>
+
+  <button onclick="ajouterArticle(this)">Ajouter au panier</button>
+</div>
+
+    </div>
+  </section>
+<div id="notification" class="notif"></div>
+<!-- Panier -->
+<div id="cart" class="cart-panel">
+  <h3>Mon Panier</h3>
+  <ul id="cart-items"></ul>
+</div>
+
+<style>
+  .cart-panel {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 260px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    display: none;
+    z-index: 999;
+  }
+
+  .cart-panel.show {
+    display: block;
+  }
+
+  .cart-panel h3 {
+    margin-top: 0;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .cart-panel ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .cart-panel li {
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+  .color-preview {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.color-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  display: inline-block;
+}
+
+</style>
+
+
+
+<script>
+  let cartCount = 0;
+
+  function toggleCart() {
+    document.getElementById("cart").classList.toggle("show");
+  }
+
+  
+
+
+  function showNotification(message) {
+    const notif = document.getElementById("notification");
+    notif.textContent = message;
+    notif.classList.add("show");
+
+    // Cacher la notification après 3 secondes
+    setTimeout(() => {
+      notif.classList.remove("show");
+    }, 3000);
+  }
+  
+  // Associer chaque bouton "Ajouter au panier" à la fonction addToCart()
+  document.querySelectorAll('.article-card').forEach(card => {
+    const button = card.querySelector('button');
+    const name = card.querySelector('h2').textContent;
+    const price = card.querySelector('.price').textContent;
+
+    button.addEventListener('click', () => {
+      addToCart(name, price);
+    });
+  });
+
+
+</script>
+<script>
+  function ajouterArticle(button) {
+  const card = button.closest('.article-card');
+  const nom = card.querySelector('h2').textContent;
+  const prix = card.querySelector('.price').textContent;
+  const quantite = parseInt(card.querySelector('.quantite').value) ;
+
+  let panier = JSON.parse(localStorage.getItem('panier')) || [];
+
+  // Chercher si l'article existe déjà
+  const indexArticle = panier.findIndex(item => item.nom === nom);
+
+  if (indexArticle !== -1) {
+    // Article déjà présent -> on ajoute la quantité
+    panier[indexArticle].quantite += quantite;
+  } else {
+    // Nouvel article
+    panier.push({ nom, prix, quantite });
+  }
+
+  localStorage.setItem('panier', JSON.stringify(panier));
+  cartCount += quantite;
+ alert(`✔ ${quantite} "${nom}" ajouté(s) au panier. Total: ${cartCount} article${cartCount > 1 ? 's' : ''}`);
+}
+</script>
+<script>
+  
+  function changerImage(el, nouvelleImage, couleur) {
+    const card = el.closest('.article-card');
+    const image = card.querySelector('.main-image');
+    image.src = nouvelleImage;
+
+    // Supprimer la sélection précédente
+    card.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+
+    // Sauvegarder la couleur dans un champ caché
+    let hiddenColor = card.querySelector('.selected-color');
+    if (!hiddenColor) {
+      hiddenColor = document.createElement('input');
+      hiddenColor.type = 'hidden';
+      hiddenColor.className = 'selected-color';
+      card.appendChild(hiddenColor);
+    }
+    hiddenColor.value = couleur;
+  }
+
+
+</script>
+
+
+</body>
+</html>

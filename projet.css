@@ -1,0 +1,382 @@
+
+   
+   
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: url('https://www.transparenttextures.com/patterns/japanese-flowers.png');
+    background-color: #fff0e6;
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+
+    
+ 
+    
+  
+
+   
+* {
+    
+    margin: 0%;
+    padding: 0%;
+
+}
+/* ====== NAVBAR ====== */
+.navbar {
+    background-color: #fff6f0;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10;
+}
+
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Great Vibes', cursive;
+    color: #a33e3e;
+}
+
+
+.link > ul {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.link ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: #a33e3e;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.link ul li a:hover {
+    background-color: #f7d9cf;
+    color: #5b1d1d;
+}
+
+/* ====== SOUS-MENU ====== */
+.has-sous-nav {
+    position: relative;
+}
+
+.sous-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff6f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    display: none;
+    flex-direction: column;
+    min-width: 180px;
+    border-radius: 6px;
+    padding: 10px 0;
+}
+
+.has-sous-nav:hover .sous-nav {
+    display: flex;
+}
+
+.sous-nav li a {
+    padding: 100px 20px;
+    color: #7b2b2b;
+    text-decoration: none;
+    display: block;
+   
+}
+
+.sous-nav li a:hover {
+    background-color: #f3cfc2;
+}
+
+
+
+
+/*
+.navbar {
+    background-color: #ffffff;
+        padding: 10px;
+       
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 40px;
+        
+    }
+.logo {
+    color: rgba(146, 59, 59, 0.788);
+    font-size: 27px;
+    font-weight: bold;
+   }
+
+
+.navbar h1{
+    font-size: 40px;
+    color: rgb(4, 5, 5);
+    margin-left: 100px;
+}
+ 
+
+
+
+.link>ul{
+    display: flex; 
+    align-items: center;
+    list-style-type: none;
+   
+}
+.link ul li a{
+    margin:  0 10px;
+    color:  rgba(146, 59, 59, 0.788);
+}
+
+
+
+
+.navbar a:hover {
+    color: #8c2f39;
+}
+
+
+.sous-nav{
+    list-style-type: none;
+    display: none;
+    top: 30px;
+    left: 0%;
+    position:fixed absolute ;
+    width: max-content;
+   
+   
+  
+}
+
+   
+.has-sous-nav:hover .sous-nav{
+    display: block;}
+
+    .sous-nav li a:hover{
+        background-color: rgb(153, 163, 47);
+        background-attachment: fixed;
+        
+    }
+    .has-sous-nav{
+        position: relative;
+    }
+.titre{
+    margin-top: -100px;
+}
+*/
+
+
+    
+
+.milieu{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.partie1{
+    flex-basis: 50%;
+}
+.Partie2 img {
+    max-width: 70%;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transition: transform 0.5s ease;
+}
+.Partie2 img:hover {
+    transform: scale(1.05);
+}
+
+.contact-container {
+    height: 100vh; /* prend toute la hauteur */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://i.pinimg.com/736x/02/db/65/02db65127ea7b2195d7221a73fbab02a.jpg');
+    background-size: cover;       /* l'image couvre tout le conteneur */
+    background-repeat: no-repeat; /* évite la répétition */
+    background-position: center;  /* centre l'image */
+}
+
+
+
+.contact-container form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 600px;
+    max-width: 90%;
+}
+h1 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+form .Separation {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(156, 84, 81);
+    margin-bottom: 20px;
+}
+
+form .corpformulaire {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+form .gauche, form .droite {
+    width: 48%;
+}
+
+form .groupe {
+    margin-bottom: 15px;
+}
+
+form .boite {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+form input, form textarea {
+    padding: 10px;
+    border: 1px solid rgba(146, 59, 59, 0.788);
+    border-radius: 5px;
+    outline-color:rgba(146, 59, 59, 0.788);
+}
+
+form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: rgba(146, 59, 59, 0.788);;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background-color: rgb(200, 90, 70);
+}
+
+.articles-section {
+    padding: 40px;
+    text-align: center;
+}
+
+.articles-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.article-card {
+    width: 250px;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    transition: transform 0.2s ease;
+}
+
+.article-card:hover {
+    transform: scale(1.03);
+}
+
+.article-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.article-card h2 {
+    font-size: 18px;
+    margin: 10px 0 5px;
+    color: #8c2f39;
+}
+
+.article-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+.article-card .prix {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #a03e50;
+}
+
+.article-card button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    border: none;
+    background-color: #a03e50;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.article-card button:hover {
+    background-color: #7e2e3e;
+}
+
+
+@media (max-width: 768px) {
+    .milieu {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    
+
+    .logo {
+        font-size: 24px;
+    }
+}
+
+
+.apropos h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.apropos p {
+  font-size: 18px;
+  color: #333;
+}
